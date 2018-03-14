@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>DOM Manipulation</title>
+      </head>
+      <style type="text/css">
+        .green { 
+           color: green;
+           font-weight: bold; 
+         }
+      </style>
+  <body>
+
+ <div class="container">
+		 <p><span class="res1">0</span> to <span class="res2">0</span></p>
+    <p>Playing to: <span id="target">5</span></p>
+		 <input type="number" name="numbers">
+			 <button class="player-1">Player one</button>
+			 <button class="player-2">Player two</button>	
+			 <button class="reset">Reset</button>
+ </div>
+
+  <script type="text/javascript">
+
+ var pl1 =  document.querySelector('.player-1');
+ var pl2 =  document.querySelector('.player-2');
+ var disp = document.querySelector('input');
+ var target = document.getElementById('target');
+ var score =  document.querySelector('.score');
+ var res1 = document.querySelector('.res1');
+ var res2 = document.querySelector('.res2');
+ var reset =  document.querySelector('.reset');
+ var scores1 = 0;
+ var scores2 = 0;
+ var gameOver = false;
+var winnerScore = 5;
+
+pl1.addEventListener('click', function() {
+    if ( !gameOver ){
+    scores1++;
+        if(scores1 === winnerScore) {
+          console.log('Game is OVER!');
+          res1.classList.add('green');
+          gameOver = true;
+        }
+
+     res1.textContent = scores1;
+     
+  }
+
+});
+
+pl2.addEventListener('click', function() {
+	    if ( !gameOver ){
+       scores2++;
+        if(scores2 === winnerScore) {
+          console.log('Game is OVER!');
+          res2.classList.add('green');
+          gameOver = true;
+          
+        }
+
+     res2.textContent = scores2;
+    
+  }
+
+});
+
+  
+reset.addEventListener('click', function(){
+  chVal();
+});
+
+function chVal() {
+     res1.textContent = 0;
+     res2.textContent = 0;
+     pl1 = 0;
+     pl2 = 0;
+     res1.classList.remove('green');
+     res2.classList.remove('green');
+     gameOver = false;
+
+};
+
+disp.addEventListener('change', function(){
+    
+     target.textContent =   disp.value;
+     winnerScore = Number(disp.value);
+     chVal();
+});
+
+
+
+  </script>
+  </body>
+  </html>
